@@ -9,15 +9,102 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
         <script>
           var app = angular.module("myApp", []);
+          class Calendario extends Date {
+
+            get day() {
+              return this.getUTCDate();
+            }
+
+            get month(){
+              return this.getUTCMonth();
+            }
+
+            get year(){
+               return this.getUTCFullYear();
+            }
+
+            get week_day(){
+               return this.getUTCDay();
+            }
+
+            set day(v) {
+              this.setUTCDate(v);
+            }
+
+            set month(v){
+              this.setUTCMonth(v);
+            }
+
+            set year(v){
+               this.setUTCFullYear(v);
+            }
+
+            nextDay(){
+              this.day = this.day + 1;
+            }
+
+            previousDay(){
+              this.day = this.day - 1;
+            }
+
+            nextMonth(){
+              this.month = this.month + 1;
+            }
+
+            previousMonth(){
+              this.month = this.month - 1;
+            }
+
+            nextYear(){
+              this.year = this.year + 1;
+            }
+
+            previousYear(){
+              this.year = this.year - 1;
+            }
+
+            get array(){
+              var aux = new Calendario();
+              var result = [];
+
+              while( aux.day > 1 ){
+                aux.previousDay();
+              }
+
+              while( aux.week_day > 0 ){
+                aux.previousDay();
+              }
+
+              for(let i = 0; i <= 7*6; i++){
+                result.push(aux.day);
+                aux.nextDay();
+              }
+
+              return result;
+            }
+          };
+
+          var f = new Calendario();
           app.controller("MainController", function($scope){
             $scope.app = "Calendario";
           });
+          // https://docs.angularjs.org/guide/directive
           app.directive("myCal",function(){
+              var d = new Date();
+              var today = {
+                day: d.getUTCDate(),
+                month: d.getUTCMonth(),
+                year: d.getUTCFullYear(),
+                week_day: d.getUTCDay(),
+
+              }
+              var f = new Calendario();
               return {
                 restrict: 'E',
                 templateUrl: 'cal-template.html',
                 controller: function($scope){
                   $scope.dir = "Hola";
+                  $scope.fecha = new Calendario();
                 }
               };
           });
