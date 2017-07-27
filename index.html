@@ -15,69 +15,79 @@
               return this.getUTCDate();
             }
 
-            get month(){
+            get month() {
               return this.getUTCMonth();
             }
 
-            get year(){
+            get year() {
                return this.getUTCFullYear();
             }
 
-            get week_day(){
+            get week_day() {
                return this.getUTCDay();
             }
 
-            set day(v) {
+            set day(v)  {
               this.setUTCDate(v);
             }
 
-            set month(v){
+            set month(v) {
               this.setUTCMonth(v);
             }
 
-            set year(v){
+            set year(v) {
                this.setUTCFullYear(v);
             }
 
-            nextDay(){
+            nextDay() {
               this.day = this.day + 1;
             }
 
-            previousDay(){
+            previousDay() {
               this.day = this.day - 1;
             }
 
-            nextMonth(){
+            nextMonth() {
               this.month = this.month + 1;
             }
 
-            previousMonth(){
+            previousMonth() {
               this.month = this.month - 1;
             }
 
-            nextYear(){
+            nextYear() {
               this.year = this.year + 1;
             }
 
-            previousYear(){
+            previousYear() {
               this.year = this.year - 1;
             }
 
-            get array(){
-              var aux = new Calendario();
-              var result = [];
+            get month_text() {
+              return ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'][this.month]
+            }
+
+            get array() {
+              // TODO Add padding row if the calendar has more than a week of the next month at the end
+              var aux = new Calendario(this);
 
               while( aux.day > 1 ){
                 aux.previousDay();
               }
 
-              while( aux.week_day > 0 ){
+              // > 1 because monday is 0
+              while( aux.week_day > 1 ){
                 aux.previousDay();
               }
 
-              for(let i = 0; i <= 7*6; i++){
-                result.push(aux.day);
-                aux.nextDay();
+              var result = [];
+              for(let i = 0; i < 6; i++){
+                var rows = [];
+                for(let j = 0; j < 7; j++){
+                  rows.push(aux.day);
+                  aux.nextDay();
+                }
+                result.push(rows);
               }
 
               return result;
