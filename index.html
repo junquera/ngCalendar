@@ -67,8 +67,9 @@
               return ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'][this.month]
             }
 
+            // TODO Cambiar esto por método estático
             get array() {
-              // TODO Add padding row if the calendar has more than a week of the next month at the end
+
               var aux = new Calendario(this);
 
               while( aux.day > 1 ){
@@ -80,11 +81,17 @@
                 aux.previousDay();
               }
 
+              // "Padding" para evitar que se acumulen muchas
+              // semanas del mes siguiente al final de la tabla
+              if ( aux.day == 1 )
+                for(var i = 0; i < 7; i++)
+                  aux.previousDay();
+
               var result = [];
-              for(let i = 0; i < 6; i++){
+              for(let i = 0; i <= 5; i++){
                 var rows = [];
                 for(let j = 0; j < 7; j++){
-                  rows.push(aux.day);
+                  rows.push({'day': aux.day, 'month': aux.month});
                   aux.nextDay();
                 }
                 result.push(rows);

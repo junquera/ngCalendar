@@ -25,9 +25,11 @@
   </div>
 
 
-  <div class="row" ng-repeat="j in fecha.array">
-    <!-- <div class="col-xs-1"></div> -->
-    <div class="col-xs-1" ng-repeat="i in j">{{ i }}</div>
+  <div class="row" ng-repeat="week in fecha.array">
+    <div class="col-xs-1" ng-repeat="day in week">
+      <!-- {{ $parent.$index*7 + $index }} -->
+      {{ day.day }}
+    </div>
   </div>
-  
+
 </div>
