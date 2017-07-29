@@ -9,8 +9,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
         <script>
           var app = angular.module("myApp", []);
-          class Calendario extends Date {
 
+          class Calendario extends Date {
+            get months() {
+              return {
+                'ES': ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
+                'EN': ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+              }
+            }
             get day() {
               return this.getUTCDate();
             }
@@ -43,7 +49,7 @@
               this.day = this.day + 1;
             }
 
-            previousDay() {
+            prevDay() {
               this.day = this.day - 1;
             }
 
@@ -51,7 +57,7 @@
               this.month = this.month + 1;
             }
 
-            previousMonth() {
+            prevMonth() {
               this.month = this.month - 1;
             }
 
@@ -59,12 +65,14 @@
               this.year = this.year + 1;
             }
 
-            previousYear() {
+            prevYear() {
               this.year = this.year - 1;
             }
 
-            get month_text() {
-              return ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'][this.month]
+            month_text(LANG) {
+              if(typeof(LANG) == 'undefined')
+                LANG = 'ES';
+              return this.months[LANG][this.month];
             }
 
             // TODO Cambiar esto por método estático
@@ -73,19 +81,19 @@
               var aux = new Calendario(this);
 
               while( aux.day > 1 ){
-                aux.previousDay();
+                aux.prevDay();
               }
 
               // > 1 because monday is 0
               while( aux.week_day > 1 ){
-                aux.previousDay();
+                aux.prevDay();
               }
 
               // "Padding" para evitar que se acumulen muchas
               // semanas del mes siguiente al final de la tabla
               if ( aux.day == 1 )
                 for(var i = 0; i < 7; i++)
-                  aux.previousDay();
+                  aux.prevDay();
 
               var result = [];
               for(let i = 0; i <= 5; i++){
@@ -122,6 +130,15 @@
                 controller: function($scope){
                   $scope.dir = "Hola";
                   $scope.fecha = new Calendario();
+                  $scope.calendario = $scope.fecha.array;
+                  $scope.nextMonth = function(){
+                    $scope.fecha.nextMonth();
+                    $scope.calendario = $scope.fecha.array;
+                  }
+                  $scope.prevMonth = function(){
+                    $scope.fecha.prevMonth();
+                    $scope.calendario = $scope.fecha.array;
+                  }
                 }
               };
           });

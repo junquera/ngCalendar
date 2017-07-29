@@ -1,35 +1,57 @@
-<div class="container" style="text-align: center;">
-  <div class="row">
+<div class="calendar" style="display: block;">
+  <style>
+    .day{
+    }
+    .day.unable {
+      color: gray;
+    }
+    .calendar {
+      width: 200px;
+    }
+    .calendar .menu {
+      text-align: center;
+    }
+    .calendar > table {
+      text-align: center;
+    }
+    .calendar table tr {
+      height: 30px ! important;
+    }
+    .calendar table tr td {
+      width: 30px ! important;
+    }
+  </style>
+  <div class="menu">
     <!-- <div class="col-xs-1"></div> -->
-    <button class="col-xs-1 btn btn-primary" ng-click="fecha.previousMonth()">&lt;</button>
-    <div class="col-xs-5">
-      <div class="row">
-        {{ fecha.month_text }}
+    <div style="float: left;" ng-click="prevMonth()">&lt;</div>
+
+    <div style="display: inline-block;">
+      <div>
+        {{ fecha.month_text() }}
       </div>
-      <div class="row">
+      <div>
         {{ fecha.year }}
       </div>
     </div>
-    <button class="col-xs-1 btn btn-primary" ng-click="fecha.nextMonth()">&gt;</button>
-    <div class="col-xs-1"></div>
-  </div>
-  <div class="row">
-    <!-- <div class="col-xs-1"></div> -->
-    <div class="col-xs-1">L</div>
-    <div class="col-xs-1">M</div>
-    <div class="col-xs-1">X</div>
-    <div class="col-xs-1">J</div>
-    <div class="col-xs-1">V</div>
-    <div class="col-xs-1">S</div>
-    <div class="col-xs-1">D</div>
+
+    <div style="float: right;" ng-click="nextMonth()">&gt;</div>
   </div>
 
-
-  <div class="row" ng-repeat="week in fecha.array">
-    <div class="col-xs-1" ng-repeat="day in week">
-      <!-- {{ $parent.$index*7 + $index }} -->
-      {{ day.day }}
-    </div>
-  </div>
-
+  <table>
+    <thead>
+      <td class="">L</td>
+      <td class="">M</td>
+      <td class="">X</td>
+      <td class="">J</td>
+      <td class="">V</td>
+      <td class="">S</td>
+      <td class="">D</td>
+    </thead>
+    <tr ng-repeat="week in calendario">
+      <td class="day" ng-repeat="day in week" ng-class="{'unable':day.month != fecha.month} ">
+        <!-- {{ $parent.$index*7 + $index }} -->
+        {{ day.day }}
+      </td>
+    </tr>
+  </table>
 </div>
