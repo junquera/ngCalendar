@@ -1,18 +1,35 @@
 <div class="calendar" style="display: block;">
   <style>
     .day{
+      border-radius: 50%;
     }
     .day.unable {
       color: gray;
     }
+    .day.today {
+      background: lightgray;
+    }
+    .day.selected {
+      background: lightblue;
+    }
     .calendar {
-      width: 200px;
+      width: 400px;
+      font-family: 'Roboto', sans-serif;
     }
     .calendar .menu {
+      /*background: #A0A0FF;
+      color: white;*/
       text-align: center;
     }
+    /*.calendar .menu .select-month {
+    }
+    .calendar .menu .select-month:active{
+      background: #9999FF;
+    }*/
     .calendar > table {
       text-align: center;
+      width: 425px;
+      height: 425px;
     }
     .calendar table tr {
       height: 30px ! important;
@@ -21,20 +38,19 @@
       width: 30px ! important;
     }
   </style>
-  <div class="menu">
+  <div class="menu row">
+    <div class="row">
+      {{ fecha.year }}
+    </div>
     <!-- <div class="col-xs-1"></div> -->
-    <div style="float: left;" ng-click="prevMonth()">&lt;</div>
 
-    <div style="display: inline-block;">
-      <div>
+    <div class="row">
+      <div class="col-xs-3 select-month" ng-click="prevMonth()">&lt;</div>
+      <div class="col-xs-6">
         {{ fecha.month_text() }}
       </div>
-      <div>
-        {{ fecha.year }}
-      </div>
+      <div class="col-xs-3 select-month" ng-click="nextMonth()">&gt;</div>
     </div>
-
-    <div style="float: right;" ng-click="nextMonth()">&gt;</div>
   </div>
 
   <table>
@@ -48,7 +64,7 @@
       <td class="">D</td>
     </thead>
     <tr ng-repeat="week in calendario">
-      <td class="day" ng-repeat="day in week" ng-class="{'unable':day.month != fecha.month} ">
+      <td class="day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month), 'selected': day.selected}" ng-click="select(this)">
         <!-- {{ $parent.$index*7 + $index }} -->
         {{ day.day }}
       </td>
