@@ -15,59 +15,61 @@
     .calendar {
       width: 400px;
       font-family: 'Roboto', sans-serif;
+      text-align: center;
+      margin: 10px 25px;
     }
     .calendar .menu {
       /*background: #A0A0FF;
       color: white;*/
-      text-align: center;
+      margin-bottom: 10px;
+    }
+    .calendar .body {
+
+    }
+    .calendar .body .day{
+      height: 33px;
+      padding: 8px;
     }
     /*.calendar .menu .select-month {
     }
     .calendar .menu .select-month:active{
       background: #9999FF;
     }*/
-    .calendar > table {
-      text-align: center;
-      width: 425px;
-      height: 425px;
-    }
-    .calendar table tr {
-      height: 30px ! important;
-    }
-    .calendar table tr td {
-      width: 30px ! important;
-    }
   </style>
-  <div class="menu row">
-    <div class="row">
-      {{ fecha.year }}
-    </div>
-    <!-- <div class="col-xs-1"></div> -->
-
-    <div class="row">
-      <div class="col-xs-3 select-month" ng-click="prevMonth()">&lt;</div>
-      <div class="col-xs-6">
-        {{ fecha.month_text() }}
+  <div>
+    <div class="menu">
+      <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-5">{{ fecha.year }}</div>
       </div>
-      <div class="col-xs-3 select-month" ng-click="nextMonth()">&gt;</div>
+      <div class="row">
+        <!-- <div class="col-xs-1"></div> -->
+        <div class="col-xs-1" ng-click="prevMonth()">&lt;</div>
+        <div class="col-xs-5">
+          {{ fecha.month_text() }}
+        </div>
+        <div class="col-xs-1" ng-click="nextMonth()">&gt;</div>
+      </div>
+    </div>
+    <div class="header">
+      <div class="row">
+        <!-- <div class="col-xs-1"></div> -->
+        <div class="col-xs-1">L</div>
+        <div class="col-xs-1">M</div>
+        <div class="col-xs-1">X</div>
+        <div class="col-xs-1">J</div>
+        <div class="col-xs-1">V</div>
+        <div class="col-xs-1">S</div>
+        <div class="col-xs-1">D</div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="row" ng-repeat="week in calendario">
+        <!-- <div class="col-xs-1 week"></div> -->
+        <div class="col-xs-1 day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month), 'selected': day.selected}" ng-click="select(this)">
+          {{ day.day }}
+        </div>
+      </div>
     </div>
   </div>
-
-  <table>
-    <thead>
-      <td class="">L</td>
-      <td class="">M</td>
-      <td class="">X</td>
-      <td class="">J</td>
-      <td class="">V</td>
-      <td class="">S</td>
-      <td class="">D</td>
-    </thead>
-    <tr ng-repeat="week in calendario">
-      <td class="day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month), 'selected': day.selected}" ng-click="select(this)">
-        <!-- {{ $parent.$index*7 + $index }} -->
-        {{ day.day }}
-      </td>
-    </tr>
-  </table>
 </div>

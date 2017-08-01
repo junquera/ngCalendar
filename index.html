@@ -30,7 +30,7 @@
             }
 
             get week_day() {
-               return this.getUTCDay();
+               return (this.getUTCDay() + 6) % 7 ;
             }
 
             get getSelected() {
@@ -63,6 +63,10 @@
               this.day = this.day - 1;
             }
 
+            /*
+              TODO Arreglar problema al añadir mes partiendo desde un día "extra" (ej. día 31)
+              Ver cómo puede afectar al cambio de mes hacerlo siempre aumentando hasta el día 1
+            */
             nextMonth() {
               this.month = this.month + 1;
             }
@@ -85,9 +89,7 @@
               return this.months[LANG][this.month];
             }
 
-            // TODO Cambiar esto por método estático
             get array() {
-
               var aux = new Calendario(this);
 
               while( aux.day > 1 ){
@@ -95,7 +97,7 @@
               }
 
               // > 1 because monday is 0
-              while( aux.week_day > 1 ){
+              while( aux.week_day > 0 ){
                 aux.prevDay();
               }
 
@@ -104,6 +106,7 @@
               if ( aux.day == 1 )
                 for(var i = 0; i < 7; i++)
                   aux.prevDay();
+
 
               var result = [];
               for(let i = 0; i <= 5; i++){
