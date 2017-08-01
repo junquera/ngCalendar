@@ -184,7 +184,6 @@
                     for(let week in $scope.calendario){
                       for(let day in $scope.calendario[week]){
                         try{
-                          console.log($scope.calendario[week][day].getTime(), '==', selected.getTime(), '?');
                           $scope.calendario[week][day].setSelected = ($scope.calendario[week][day].getTime() == selected.getTime());
                         } catch(e){
                           continue;

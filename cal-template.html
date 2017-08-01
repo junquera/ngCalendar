@@ -1,4 +1,4 @@
-<div class="calendar" style="display: block;">
+<div class="calendar">
   <style>
     .day{
       border-radius: 50%;
@@ -19,8 +19,6 @@
       margin: 10px 25px;
     }
     .calendar .menu {
-      /*background: #A0A0FF;
-      color: white;*/
       margin-bottom: 10px;
     }
     .calendar .body {
@@ -30,20 +28,48 @@
       height: 33px;
       padding: 8px;
     }
-    /*.calendar .menu .select-month {
-    }
-    .calendar .menu .select-month:active{
-      background: #9999FF;
-    }*/
   </style>
   <div>
+
+    <!-- TODO Apply the other changes -->
+    <div hidden>
+      <div class="row">
+        <div class="col-xs-6 row">
+          <div class="col-xs-2"></div>
+          <div class="col-xs-10">YYYY</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 row">
+          <div class="col-xs-2">&lt;</div>
+          <div class="col-xs-10">MM</div>
+        </div>
+        <div class="col-xs-6 row">
+          <div class="col-xs-2">&gt;</div>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="i in [0,1,2,3,4,5,6]">
+        <div class="col-xs-6 row">
+          <div class="col-xs-2">x</div>
+          <div class="col-xs-2">x</div>
+          <div class="col-xs-2">x</div>
+          <div class="col-xs-2">x</div>
+          <div class="col-xs-2">x</div>
+          <div class="col-xs-2">x</div>
+        </div>
+        <div class="col-xs-6 row">
+          <div class="col-xs-2">x</div>
+        </div>
+      </div>
+    </div>
+
     <div class="menu">
       <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-5">{{ fecha.year }}</div>
       </div>
       <div class="row">
-        <!-- <div class="col-xs-1"></div> -->
         <div class="col-xs-1" ng-click="prevMonth()">&lt;</div>
         <div class="col-xs-5">
           {{ fecha.month_text() }}
@@ -53,7 +79,6 @@
     </div>
     <div class="header">
       <div class="row">
-        <!-- <div class="col-xs-1"></div> -->
         <div class="col-xs-1">L</div>
         <div class="col-xs-1">M</div>
         <div class="col-xs-1">X</div>
@@ -65,8 +90,7 @@
     </div>
     <div class="body">
       <div class="row" ng-repeat="week in calendario">
-        <!-- <div class="col-xs-1 week"></div> -->
-        <div class="col-xs-1 day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month), 'selected': day.selected}" ng-click="select(this)">
+        <div class="col-xs-1 day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': day.selected}" ng-click="select(this)">
           {{ day.day }}
         </div>
       </div>
