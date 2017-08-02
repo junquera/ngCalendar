@@ -15,54 +15,28 @@
     .calendar {
       width: 400px;
       font-family: 'Roboto', sans-serif;
-      text-align: center;
-      margin: 10px 25px;
+      white-space: nowrap;
     }
     .calendar .menu {
       margin-bottom: 10px;
     }
-    .calendar .body {
 
+    .calendar .grind {
+      text-align: center;
     }
-    .calendar .body .day{
-      height: 33px;
-      padding: 8px;
+
+    .calendar .grid .week {
+      display:block;
+      height: 30px;
     }
+    .calendar .grid .week .day {
+      display: inline-block;
+      width: 30px;
+      padding: 5px;
+      margin: 5px;
+    }
+
   </style>
-  <div>
-
-    <!-- TODO Apply the other changes -->
-    <div hidden>
-      <div class="row">
-        <div class="col-xs-6 row">
-          <div class="col-xs-2"></div>
-          <div class="col-xs-10">YYYY</div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 row">
-          <div class="col-xs-2">&lt;</div>
-          <div class="col-xs-10">MM</div>
-        </div>
-        <div class="col-xs-6 row">
-          <div class="col-xs-2">&gt;</div>
-        </div>
-      </div>
-
-      <div class="row" ng-repeat="i in [0,1,2,3,4,5,6]">
-        <div class="col-xs-6 row">
-          <div class="col-xs-2">x</div>
-          <div class="col-xs-2">x</div>
-          <div class="col-xs-2">x</div>
-          <div class="col-xs-2">x</div>
-          <div class="col-xs-2">x</div>
-          <div class="col-xs-2">x</div>
-        </div>
-        <div class="col-xs-6 row">
-          <div class="col-xs-2">x</div>
-        </div>
-      </div>
-    </div>
 
     <div class="menu">
       <div class="row">
@@ -77,23 +51,35 @@
         <div class="col-xs-1" ng-click="nextMonth()">&gt;</div>
       </div>
     </div>
-    <div class="header">
-      <div class="row">
-        <div class="col-xs-1">L</div>
-        <div class="col-xs-1">M</div>
-        <div class="col-xs-1">X</div>
-        <div class="col-xs-1">J</div>
-        <div class="col-xs-1">V</div>
-        <div class="col-xs-1">S</div>
-        <div class="col-xs-1">D</div>
-      </div>
-    </div>
-    <div class="body">
-      <div class="row" ng-repeat="week in calendario">
-        <div class="col-xs-1 day" ng-repeat="day in week" ng-class="{'unable': (day.month != fecha.month), 'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': day.selected}" ng-click="select(this)">
-          {{ day.day }}
+
+    <div class="grid">
+      <div class="header">
+          <div class="week">
+          <!-- The structure of this block is for avoid the white spaces introduced by the browser-->
+          <!-- https://css-tricks.com/fighting-the-space-between-inline-block-elements/ -->
+              <div class="day">
+              L</div><div class="day">
+              M</div><div class="day">
+              X</div><div class="day">
+              J</div><div class="day">
+              V</div><div class="day">
+              S</div><div class="day">
+              D</div>
+            <!-- <div class="day" ng-repeat="d in ['L','M','X','J','V','S','D']">{{ d }}</div> -->
+          </div>
+        </div>
+        <div class="body">
+          <div class="week" ng-repeat="week in calendario">
+          <div class="day"
+          ng-class="{
+            'unable': (day.month != fecha.month),
+            'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': day.selected
+          }"
+          ng-click="select(this)"
+          ng-repeat="day in week">
+            {{ day.day }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>
