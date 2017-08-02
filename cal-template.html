@@ -1,54 +1,59 @@
 <div class="calendar">
   <style>
+
     .day{
       border-radius: 50%;
     }
+
     .day.unable {
-      color: gray;
-    }
-    .day.today {
-      background: lightgray;
-    }
-    .day.selected {
-      background: lightblue;
-    }
-    .calendar {
-      width: 400px;
-      font-family: 'Roboto', sans-serif;
-      white-space: nowrap;
-    }
-    .calendar .menu {
-      margin-bottom: 10px;
+      color: #665B55;
     }
 
-    .calendar .grind {
-      text-align: center;
+    .day.today {
+      background: #AAF;
+      color: white;
+    }
+
+    .day.selected {
+      background: #333641;
+      color: white;
+    }
+
+    .calendar {
+      width: 230px;
+      font-family: 'Roboto', sans-serif;
+      background: #3B3E4B;
+      color: #5493E1;
+      padding: 10px;
+    }
+
+    .calendar .menu {
+      margin-bottom: 10px;
+      color: #9CC4C2;
     }
 
     .calendar .grid .week {
-      display:block;
+      display: block;
       height: 30px;
     }
+
     .calendar .grid .week .day {
       display: inline-block;
       width: 30px;
-      padding: 5px;
-      margin: 5px;
+      height: 30px;
+      text-align: center;
+      padding-top: 6px;
     }
 
   </style>
 
     <div class="menu">
-      <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-5">{{ fecha.year }}</div>
-      </div>
-      <div class="row">
-        <div class="col-xs-1" ng-click="prevMonth()">&lt;</div>
-        <div class="col-xs-5">
-          {{ fecha.month_text() }}
-        </div>
-        <div class="col-xs-1" ng-click="nextMonth()">&gt;</div>
+      <div style="text-align: center;">{{ fecha.year }}</div>
+      <div>
+        <div style="width: 30px; text-align: center; display: inline-block" ng-click="prevMonth()">&lt;</div><!--
+        --><div style="width: 150px; text-align: center; display: inline-block" >
+          {{ fecha.month_text() }}</div><!--
+        --><div style="width: 30px; text-align: center; display: inline-block" ng-click="nextMonth()">&gt;</div>
       </div>
     </div>
 
