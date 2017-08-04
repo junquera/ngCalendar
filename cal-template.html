@@ -1,59 +1,87 @@
 <div class="calendar">
+
   <style>
 
-    .day{
+
+    .calendar .grid .header .week .day {
+
+    }
+    .calendar .grid .body .week .day {
+      cursor: pointer;
       border-radius: 50%;
     }
 
-    .day.unable {
-      color: #665B55;
+    .calendar .grid .body .week .day.unable{
+      color: #AAAAAA;
+      font-weight: lighter;
     }
 
     .day.today {
-      background: #AAF;
+      background: #8844AA;
       color: white;
     }
 
     .day.selected {
-      background: #333641;
+      background: #AA4499;
       color: white;
     }
 
     .calendar {
-      width: 230px;
+      width: 300px;
       font-family: 'Roboto', sans-serif;
-      background: #3B3E4B;
-      color: #5493E1;
+      background: white;
+      color: #8844AA;
       padding: 10px;
+      text-align: center;
+      cursor: default;
     }
 
     .calendar .menu {
       margin-bottom: 10px;
-      color: #9CC4C2;
+      color: gray;
+    }
+
+    .calendar .menu .control > div {
+      display: inline-block;
+    }
+
+    .calendar .menu .change-month {
+      width: 30px;
+    }
+
+    .calendar .menu .change-month:hover{
+      background: #EEE;
+    }
+    .calendar .menu .change-month:active{
+      background: #DDD;
+      color: #EEE;
+    }
+
+    .calendar .grid .header {
+      color: gray;
     }
 
     .calendar .grid .week {
-      display: block;
-      height: 30px;
+      display: inline-block;
+      height: 37.5px;
     }
 
     .calendar .grid .week .day {
       display: inline-block;
       width: 30px;
       height: 30px;
-      text-align: center;
+      margin: 5px;
       padding-top: 6px;
     }
-
   </style>
 
     <div class="menu">
-      <div style="text-align: center;">{{ fecha.year }}</div>
-      <div>
-        <div style="width: 30px; text-align: center; display: inline-block" ng-click="prevMonth()">&lt;</div><!--
-        --><div style="width: 150px; text-align: center; display: inline-block" >
+      <div>{{ fecha.year }}</div>
+      <div class="control">
+        <div class="change-month prev" ng-click="prevMonth()">&lt;</div><!--
+        --><div style="width: 150px;" >
           {{ fecha.month_text() }}</div><!--
-        --><div style="width: 30px; text-align: center; display: inline-block" ng-click="nextMonth()">&gt;</div>
+        --><div class="change-month next" style="width: 30px;" ng-click="nextMonth()">&gt;</div>
       </div>
     </div>
 
