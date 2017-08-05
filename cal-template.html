@@ -2,28 +2,30 @@
 
   <style>
 
+      .calendar .grid .body .week > .day {
+        cursor: pointer;
+        border-radius: 50%;
+      }
 
-    .calendar .grid .header .week .day {
+      .calendar .grid .body .week > .day:hover {
+        background: #EEE;
+        transition: all 0.5s;
+      }
 
-    }
-    .calendar .grid .body .week .day {
-      cursor: pointer;
-      border-radius: 50%;
-    }
-
-    .calendar .grid .body .week .day.unable{
-      color: #AAAAAA;
+    .calendar .grid .body .week > .day.unable{
+      opacity: 0.5;
       font-weight: lighter;
     }
 
-    .day.today {
+    .calendar .grid .body .week > .day.today {
       background: #8844AA;
       color: white;
     }
 
-    .day.selected {
-      background: #AA4499;
+    .calendar .grid .body .week > .day.selected {
+      background: #AA448F;
       color: white;
+      transition: all 0.25s;
     }
 
     .calendar {
@@ -51,6 +53,7 @@
 
     .calendar .menu .change-month:hover{
       background: #EEE;
+      transition: all 0.25s;
     }
     .calendar .menu .change-month:active{
       background: #DDD;
@@ -106,7 +109,7 @@
           <div class="day"
           ng-class="{
             'unable': (day.month != fecha.month),
-            'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': day.selected
+            'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': isSelected(day)
           }"
           ng-click="select(this)"
           ng-repeat="day in week">

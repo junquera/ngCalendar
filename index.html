@@ -33,12 +33,6 @@
                return (this.getUTCDay() + 6) % 7 ;
             }
 
-            get getSelected() {
-              if(typeof(this.selected) == 'undefined')
-                return false;
-              else
-                return this.selected;
-            }
             set day(v)  {
               this.setUTCDate(v);
             }
@@ -51,16 +45,15 @@
                this.setUTCFullYear(v);
             }
 
-            set setSelected(v) {
-              this.selected = v;
-            }
 
             nextDay() {
               this.day = this.day + 1;
+              return this;
             }
 
             prevDay() {
               this.day = this.day - 1;
+              return this;
             }
 
             /*
@@ -134,7 +127,6 @@
                 month: d.getUTCMonth(),
                 year: d.getUTCFullYear(),
                 week_day: d.getUTCDay(),
-
               }
               // TODO Arreglar problema con octubre de 2018
               var f = new Calendario();
@@ -149,6 +141,7 @@
                   $scope.today = new Calendario();
                   $scope.selected = new Calendario().nextDay();
 
+
                   $scope.calendario = $scope.fecha.array;
                   $scope.nextMonth = function(){
                     $scope.fecha.nextMonth();
@@ -158,13 +151,11 @@
                     $scope.fecha.prevMonth();
                     $scope.calendario = $scope.fecha.array;
                   }
-
+                  $scope.isSelected = function(day){
+                    return day.getTime() == $scope.selected.getTime();
+                  }
                   $scope.select = function(day){
                     var selected = new Calendario(day.day);
-                    // if(new Calendario(day.day).getTime() <= new Calendario($scope.today).getTime()){
-                    //   alert("Error");
-                    //   return;
-                    // }
 
                     if(selected.month > $scope.fecha.month){
                       if(selected.year >= $scope.fecha.year){
@@ -173,22 +164,10 @@
                         $scope.prevMonth();
                       }
                     } else if (selected.month < $scope.fecha.month){
-                      if(selected.year <= $scope.fecha.year){
+                      if(selected.year <= $scope.fecha.year)
                         $scope.prevMonth();
-                      } else {
+                      else
                         $scope.nextMonth();
-                      }
-                    }
-
-                    // TODO Extraer a método *drawCal*
-                    for(let week in $scope.calendario){
-                      for(let day in $scope.calendario[week]){
-                        try{
-                          $scope.calendario[week][day].setSelected = ($scope.calendario[week][day].getTime() == selected.getTime());
-                        } catch(e){
-                          continue;
-                        }
-                      }
                     }
 
                     $scope.selected = new Calendario(selected);
