@@ -1,0 +1,73 @@
+.calendar {
+  width: 300px;
+  font-family: 'Roboto', sans-serif;
+  background: white;
+  color: #8844AA;
+  padding: 10px;
+  text-align: center;
+  cursor: default;
+}
+.calendar .grid .body .week > .day {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.calendar .grid .body .week > .day:hover {
+  background: #EEE;
+  transition: all 0.5s;
+}
+
+.calendar .grid .body .week > .day.unable{
+  opacity: 0.5;
+  font-weight: lighter;
+}
+
+.calendar .grid .body .week > .day.today {
+  background: #8844AA;
+  color: white;
+}
+
+.calendar .grid .body .week > .day.selected {
+  background: #AA448F;
+  color: white;
+  transition: all 0.25s;
+}
+
+.calendar .menu {
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.calendar .menu .control > div {
+  display: inline-block;
+}
+
+.calendar .menu .change-month {
+  width: 30px;
+}
+
+.calendar .menu .change-month:hover{
+  background: #EEE;
+  transition: all 0.25s;
+}
+.calendar .menu .change-month:active{
+  background: #DDD;
+  color: #EEE;
+}
+
+.calendar .grid .header {
+  color: gray;
+}
+
+.calendar .grid .week {
+  display: inline-block;
+  height: 37.5px;
+}
+
+.calendar .grid .week .day {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  padding-top: 6px;
+}
