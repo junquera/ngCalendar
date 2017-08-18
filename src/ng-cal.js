@@ -2,8 +2,15 @@
 class Calendario extends Date {
   get months() {
     return {
-      'ES': ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
-      'EN': ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+      'ES': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      'EN': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    }
+  }
+
+  get days() {
+    return {
+      'ES': ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'],
+      'EN': ['Mon', 'Tue', 'Wed', 'Thu', 'Fry', 'Sat', 'Sun']
     }
   }
   get day() {
@@ -65,6 +72,12 @@ class Calendario extends Date {
     if(typeof(LANG) == 'undefined')
       LANG = 'ES';
     return this.months[LANG][this.month];
+  }
+
+  week_day_text(LANG) {
+    if(typeof(LANG) == 'undefined')
+      LANG = 'ES';
+    return this.days[LANG][this.week_day];
   }
 
   get array() {
