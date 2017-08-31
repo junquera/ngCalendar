@@ -1,15 +1,16 @@
 <div class="calendar">
     <link rel="stylesheet" href="src/stylesheet.css">
-    <div class="selection">
-      <div id="year">{{ selected.year }}</div>
-      <div id="date">{{selected.week_day_text()}}., {{selected.day}} {{selected.month_text() | lowercase}}</div>
+    <div class="selection" ng-show="selected">
+        <div id="year">{{ selected.year }}</div>
+        <div id="date">{{selected.week_day_text()}}., {{selected.day}} {{selected.month_text() | lowercase}}</div>
     </div>
+    <div class="wrapper" style="height: 25px; display: inline-block;"></div>
     <div class="menu">
       <div class="control">
-        <div class="change-month prev" ng-click="prevMonth()">&lt;</div><!--
+        <div class="change-month prev boton" ng-click="prevMonth()">&lt;</div><!--
         --><div style="width: 150px;" >
           {{ fecha.month_text() }} {{ fecha.year }}</div><!--
-        --><div class="change-month next" style="width: 30px;" ng-click="nextMonth()">&gt;</div>
+        --><div class="change-month next boton" style="width: 30px;" ng-click="nextMonth()">&gt;</div>
       </div>
     </div>
 
@@ -42,5 +43,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="confirmation">
+      <div class="option boton" ng-disabled="!selected" ng-class="{'disabled': !selected}"ng-click="aceptar()">Aceptar</div>
+      <div class="option boton" ng-click="cancelar()">Cancelar</div>
     </div>
 </div>

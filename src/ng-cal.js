@@ -113,9 +113,13 @@ class Calendario extends Date {
   }
 };
 
-angular.module('Calendar', []).directive("myCal",function(){
+angular.module('Calendar', ['ngAnimate']).directive("myCal",function(){
     return {
       restrict: 'E',
+      scope: {
+        'acceptCallback': '=onAccept',
+        'cancelCallback': '=onCancel',
+      },
       templateUrl: 'src/cal-template.html',
       controller: function($scope){
         $scope.dir = "Hola";
@@ -123,7 +127,21 @@ angular.module('Calendar', []).directive("myCal",function(){
 
         $scope.fecha = new Calendario();
         $scope.today = new Calendario();
-        $scope.selected = new Calendario().nextDay();
+        $scope.selected = undefined;
+
+        $scope.aceptar = function(){
+          if(!$scope.selected)
+            return;
+          $scope.acceptCallback($scope.selected);
+        }
+
+        // TODO Add cancel callback
+        $scope.cancelar = function(){
+          $scope.selected = undefined;
+          $scope.fecha = new Calendario();
+          $scope.calendario = $scope.fecha.array;
+          $scope.cancelCallback();
+        }
 
 
         $scope.calendario = $scope.fecha.array;
@@ -135,9 +153,14 @@ angular.module('Calendar', []).directive("myCal",function(){
           $scope.fecha.prevMonth();
           $scope.calendario = $scope.fecha.array;
         }
+
         $scope.isSelected = function(day){
-          return day.getTime() == $scope.selected.getTime();
+          if($scope.selected)
+            return day.getTime() == $scope.selected.getTime();
+          else
+            return false;
         }
+
         $scope.select = function(day){
           var selected = new Calendario(day.day);
 
