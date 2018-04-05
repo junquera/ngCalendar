@@ -17,18 +17,49 @@
 
         app.controller("MainController", function($scope){
           $scope.app = "Calendario";
-          $scope.alert = alert;
         });
 
       </script>
+      <style>
+        body {
+          background: url('background.png');
+        }
 
+        ng-cal {
+          position: fixed;
+          transition: 'opacity 1s linear';
+
+        }
+      </style>
     </head>
     <body ng-app="myapp" ng-controller="MainController">
-      <h1>{{ app }}</h1>
-      <div style="margin: 50px;">
-        <my-cal on-accept="alert"></my-cal>
-      </div>
 
+      <ng-cal on-accept="console.log"></ng-cal>
+
+      <script>
+        var m = document.getElementsByTagName('ng-cal')[0];
+        m.style['opacity'] = 0;
+
+        function setPosition() {
+
+          var width = m.offsetWidth;
+          var height = m.offsetHeight;
+
+          var top = (window.innerHeight - height)/2;
+          var left = (window.innerWidth - width)/2;
+          m.style['left'] = left;
+          m.style['top'] = top;
+          console.log("Set position");
+        }
+
+        setTimeout(function(){
+          m.style['opacity'] = 1;
+          setPosition();
+        }, 500);
+
+        window.onresize = setPosition;
+
+      </script>
     </body>
 
 </html>

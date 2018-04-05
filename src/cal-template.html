@@ -35,7 +35,8 @@
           <div class="day"
           ng-class="{
             'unable': (day.month != fecha.month),
-            'today': (day.day == today.day && day.month == today.month && day.year == today.year), 'selected': isSelected(day)
+            'today': (day.day == today.day && day.month == today.month && day.year == today.year),
+            'selected': isSelected(day)
           }"
           ng-click="select(this)"
           ng-repeat="day in week">
@@ -45,7 +46,7 @@
       </div>
     </div>
     <div class="confirmation">
-      <div class="option boton" ng-disabled="!selected" ng-class="{'disabled': !selected}"ng-click="aceptar()">Aceptar</div>
+      <div class="option boton" ng-disabled="!selected" ng-class="{'disabled': !selected}" ng-click="aceptar()">Aceptar</div>
       <div class="option boton" ng-click="cancelar()">Cancelar</div>
     </div>
 </div>

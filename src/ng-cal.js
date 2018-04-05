@@ -113,12 +113,12 @@ class Calendario extends Date {
   }
 };
 
-angular.module('Calendar', ['ngAnimate']).directive("myCal",function(){
+angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
     return {
       restrict: 'E',
       scope: {
-        'acceptCallback': '=onAccept',
-        'cancelCallback': '=onCancel',
+        'acceptCallback': '&onAccept',
+        'cancelCallback': '&onCancel',
       },
       templateUrl: 'src/cal-template.html',
       controller: function($scope){
@@ -132,7 +132,9 @@ angular.module('Calendar', ['ngAnimate']).directive("myCal",function(){
         $scope.aceptar = function(){
           if(!$scope.selected)
             return;
-          $scope.acceptCallback($scope.selected);
+
+          if($scope.acceptCallback)
+            $scope.acceptCallback($scope.selected);
         }
 
         // TODO Add cancel callback
@@ -140,7 +142,8 @@ angular.module('Calendar', ['ngAnimate']).directive("myCal",function(){
           $scope.selected = undefined;
           $scope.fecha = new Calendario();
           $scope.calendario = $scope.fecha.array;
-          $scope.cancelCallback();
+          if($scope.cancelCallback)
+            $scope.cancelCallback();
         }
 
 
