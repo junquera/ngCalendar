@@ -113,6 +113,8 @@ class Calendario extends Date {
   }
 };
 
+// https://www.reddit.com/r/angularjs/comments/2wfq45/passing_functions_to_directives_vs/
+// https://coderwall.com/p/lfkaea/angular-js-passing-reference-to-directive
 angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
     return {
       restrict: 'E',
@@ -130,11 +132,16 @@ angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
         $scope.selected = undefined;
 
         $scope.aceptar = function(){
+
           if(!$scope.selected)
             return;
 
+
           if($scope.acceptCallback)
-            $scope.acceptCallback($scope.selected);
+            alert("Aceptar");
+            $scope.acceptCallback({
+              'date': $scope.selected
+            });
         }
 
         // TODO Add cancel callback
