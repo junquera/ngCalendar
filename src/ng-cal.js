@@ -117,7 +117,7 @@ class Calendario extends Date {
 // https://coderwall.com/p/lfkaea/angular-js-passing-reference-to-directive
 angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
     return {
-      restrict: 'E',
+      restrict: 'EA',
       scope: {
         'acceptCallback': '&onAccept',
         'cancelCallback': '&onCancel',
