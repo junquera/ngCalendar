@@ -117,15 +117,13 @@ class Calendario extends Date {
 // https://coderwall.com/p/lfkaea/angular-js-passing-reference-to-directive
 angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
     return {
-      restrict: 'EA',
+      restrict: 'E',
       scope: {
         'acceptCallback': '&onAccept',
         'cancelCallback': '&onCancel',
       },
       templateUrl: 'cal-template.html',
       controller: function($scope){
-
-        $scope.console = {'log': console.log};
 
         $scope.fecha = new Calendario();
         $scope.today = new Calendario();
@@ -136,11 +134,11 @@ angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
           if(!$scope.selected)
             return;
 
-
-          if($scope.acceptCallback)
+          if($scope.acceptCallback) {
             $scope.acceptCallback({
-              'date': $scope.selected
+              date: $scope.selected,
             });
+          }
         }
 
         // TODO Add cancel callback

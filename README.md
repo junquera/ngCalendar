@@ -56,6 +56,20 @@ The `on-accept` callback, will receive a parameter called `date`, with the selec
 
 ### From source
 
-Change templateUrl with template: ``
+- Change templateUrl with template, and the content of `cal-template.html`:
 
-- Add stylesheet
+```
+templateUrl: 'cal-template.html'
+```
+
+to
+
+```
+template: `
+<div class="calendar">
+...
+</div>
+`
+```
+
+- Add the calendar stylesheet to your html document.

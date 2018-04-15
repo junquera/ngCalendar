@@ -36,7 +36,13 @@
     </head>
     <body ng-app="myapp" ng-controller="MainController">
 
-      <ng-cal on-accept="console.log(date)"></ng-cal>
+      <script>
+        function a(d){
+          console.log("Date = ", d);
+        }
+      </script>
+
+      <ng-cal on-accept="a(date)"></ng-cal>
 
       <script>
         var m = document.getElementsByTagName('ng-cal')[0];
