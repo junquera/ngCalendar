@@ -122,9 +122,9 @@ angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
         'acceptCallback': '&onAccept',
         'cancelCallback': '&onCancel',
       },
-      templateUrl: 'src/cal-template.html',
+      templateUrl: 'cal-template.html',
       controller: function($scope){
-        $scope.dir = "Hola";
+
         $scope.console = {'log': console.log};
 
         $scope.fecha = new Calendario();
@@ -138,7 +138,6 @@ angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
 
 
           if($scope.acceptCallback)
-            alert("Aceptar");
             $scope.acceptCallback({
               'date': $scope.selected
             });

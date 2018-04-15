@@ -6,6 +6,8 @@
       <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+      <link rel="stylesheet" href="css/ng-cal.css">
+
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.js"></script>
 
@@ -34,7 +36,7 @@
     </head>
     <body ng-app="myapp" ng-controller="MainController">
 
-      <ng-cal on-accept="alert(date)"></ng-cal>
+      <ng-cal on-accept="console.log(date)"></ng-cal>
 
       <script>
         var m = document.getElementsByTagName('ng-cal')[0];
@@ -49,7 +51,6 @@
           var left = (window.innerWidth - width)/2;
           m.style['left'] = left;
           m.style['top'] = top;
-          console.log("Set position");
         }
 
         setTimeout(function(){
