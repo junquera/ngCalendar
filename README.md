@@ -1,6 +1,6 @@
 # ng-cal
 
-Fancy AngularJS calendar with material design.
+Fancy AngularJS calendar with material design. Live example [here](https://junquera.github.io/ngCalendar)
 
 ## Requeriments
 
