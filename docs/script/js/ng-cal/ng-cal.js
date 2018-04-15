@@ -221,7 +221,7 @@ angular.module('Calendar', ['ngAnimate']).directive("ngCal",function(){
             return false;
         }
 
-        $scope.select = function(day){
+        $scope.select = function(day) {
           var selected = new Calendario(day.day);
 
           if(selected.month > $scope.fecha.month){

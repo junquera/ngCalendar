@@ -19,6 +19,10 @@
 
         app.controller("MainController", function($scope){
           $scope.app = "Calendario";
+
+          $scope.a = function(d){
+            alert("Selected date:\n" + d);
+          }
         });
 
       </script>
@@ -35,12 +39,6 @@
       </style>
     </head>
     <body ng-app="myapp" ng-controller="MainController">
-
-      <script>
-        function a(d){
-          console.log("Date = ", d);
-        }
-      </script>
 
       <ng-cal on-accept="a(date)"></ng-cal>
 

@@ -41,7 +41,7 @@ Fancy AngularJS calendar with material design.
 - Create the element:
 
 ```      
-<ng-cal on-accept="alert(date)" on-cancel="alert('Nope')"></ng-cal>
+<ng-cal on-accept="accept_callback(date)" on-cancel="cancel_callback('Nope')"></ng-cal>
 ```
 
 ### Accept/Cancel callbacks
@@ -51,8 +51,10 @@ You can add `on-accept` and `on-cancel` callback to the calendar directive.
 The `on-accept` callback, will receive a parameter called `date`, with the selected date:
 
 ```
-<ng-cal on-accept="console.log(date)"></ng-cal>
+<ng-cal on-accept="my_angular_function(date)"></ng-cal>
 ```
+
+The function passed as callback, must be defined in your application's scope.
 
 ### From source
 
