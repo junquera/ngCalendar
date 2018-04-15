@@ -14,7 +14,7 @@ Fancy AngularJS calendar with material design.
 
 ## Usage
 
-- Download the [latest version]()
+- Download the [latest version](https://github.com/junquera/ngCalendar/releases/download/v1.0/ng-calendar-1.0.tar.gz)
 
 - Insert in your html:
 
