@@ -1,0 +1,132 @@
+.calendar {
+  width: 320px;
+  font-family: 'Roboto', sans-serif;
+  background: white;
+  color: black;
+  /*text-align: center;*/
+  cursor: default;
+  padding-bottom: 10px;
+  box-shadow: -2px -2px 5px #ddd, 4px 4px 5px #eee
+}
+
+.calendar .selection {
+  text-align: left;
+  padding: 15px 30px;
+  background: black;
+  font-size: 17px;
+  opacity: 1;
+}
+
+.calendar .selection.ng-hide-add, .calendar .selection.ng-hide-remove {
+    transition: all linear 0.25s;
+}
+
+.calendar .selection.ng-hide {
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 0px;
+}
+
+
+.calendar .selection #year{
+  color: gray;
+}
+
+.calendar .selection #date{
+  color: white;
+}
+.calendar {
+  text-align: center;
+}
+
+.calendar .grid {
+  width: 300px;
+  margin: 10px;
+}
+
+.calendar .grid .body .week > .day {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.calendar .grid .body .week > .day:hover {
+  background: #EEE;
+  transition: all 0.5s;
+}
+
+.calendar .grid .body .week > .day.unable{
+  opacity: 0.4;
+  font-weight: lighter;
+}
+
+.calendar .grid .body .week > .day.today {
+  background: gray;
+  color: white;
+}
+
+.calendar .grid .body .week > .day.selected {
+  background: black;
+  color: white;
+  transition: all 0.25s;
+}
+
+.calendar .menu {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.calendar .menu .control > div {
+  display: inline-block;
+}
+
+.calendar .menu .change-month {
+  width: 30px;
+}
+
+.boton {
+  cursor: pointer;
+}
+
+.boton:hover{
+  background: #EEE;
+  transition: all 0.25s;
+}
+.boton:active{
+  background: #DDD;
+}
+
+.boton.disabled {
+  cursor: not-allowed!important;
+  background: #CCC!important;
+  opacity: 0.5;
+}
+
+.calendar .grid .header {
+  color: gray;
+}
+
+.calendar .grid .week {
+  display: inline-block;
+  height: 37.5px;
+}
+
+.calendar .grid .week .day {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  padding-top: 6px;
+}
+
+.calendar .confirmation {
+  text-align: right;
+  margin: 5px 20px 0 20px;
+}
+
+.calendar .confirmation .option {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+}

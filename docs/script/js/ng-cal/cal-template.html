@@ -1,0 +1,52 @@
+<div class="calendar">
+    <link rel="stylesheet" href="src/stylesheet.css">
+    <div class="selection" ng-show="selected">
+        <div id="year">{{ selected.year }}</div>
+        <div id="date">{{selected.week_day_text()}}., {{selected.day}} {{selected.month_text() | lowercase}}</div>
+    </div>
+    <div class="wrapper" style="height: 25px; display: inline-block;"></div>
+    <div class="menu">
+      <div class="control">
+        <div class="change-month prev boton" ng-click="prevMonth()">&lt;</div><!--
+        --><div style="width: 150px;" >
+          {{ fecha.month_text() }} {{ fecha.year }}</div><!--
+        --><div class="change-month next boton" style="width: 30px;" ng-click="nextMonth()">&gt;</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="header">
+          <div class="week">
+          <!-- The structure of this block is for avoid the white spaces introduced by the browser-->
+          <!-- https://css-tricks.com/fighting-the-space-between-inline-block-elements/ -->
+              <div class="day">
+              L</div><div class="day">
+              M</div><div class="day">
+              X</div><div class="day">
+              J</div><div class="day">
+              V</div><div class="day">
+              S</div><div class="day">
+              D</div>
+            <!-- <div class="day" ng-repeat="d in ['L','M','X','J','V','S','D']">{{ d }}</div> -->
+          </div>
+        </div>
+        <div class="body">
+          <div class="week" ng-repeat="week in calendario">
+          <div class="day"
+          ng-class="{
+            'unable': (day.month != fecha.month),
+            'today': (day.day == today.day && day.month == today.month && day.year == today.year),
+            'selected': isSelected(day)
+          }"
+          ng-click="select(this)"
+          ng-repeat="day in week">
+            {{ day.day }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="confirmation">
+      <div class="option boton" ng-disabled="!selected" ng-class="{'disabled': !selected}" ng-click="aceptar()">Aceptar</div>
+      <div class="option boton" ng-click="cancelar()">Cancelar</div>
+    </div>
+</div>
