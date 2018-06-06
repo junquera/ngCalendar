@@ -18,7 +18,7 @@ Fancy AngularJS calendar with material design. Live example [here](https://junqu
 
 - Insert in your html:
 
-```
+```html
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -32,7 +32,7 @@ Fancy AngularJS calendar with material design. Live example [here](https://junqu
 
 - Add ng-cal to your Angular app:
 
-```
+```html
 <script>
   var app = angular.module("your-app", ['Calendar']);
 </script>
@@ -40,7 +40,7 @@ Fancy AngularJS calendar with material design. Live example [here](https://junqu
 
 - Create the element:
 
-```      
+```html      
 <ng-cal on-accept="accept_callback(date)" on-cancel="cancel_callback('Nope')"></ng-cal>
 ```
 
@@ -50,7 +50,7 @@ You can add `on-accept` and `on-cancel` callback to the calendar directive.
 
 The `on-accept` callback, will receive a parameter called `date`, with the selected date:
 
-```
+```html
 <ng-cal on-accept="my_angular_function(date)"></ng-cal>
 ```
 
@@ -60,13 +60,13 @@ The function passed as callback, must be defined in your application's scope.
 
 - Change templateUrl with template, and the content of `cal-template.html`:
 
-```
+```html
 templateUrl: 'cal-template.html'
 ```
 
 to
 
-```
+```html
 template: `
 <div class="calendar">
 ...
